@@ -1,7 +1,8 @@
 import tensorflow_datasets as tfds
+import numpy as np
 from matplotlib import pyplot as plt
 from tensorflow.keras import layers, models
-from sklearn.metrics import accuracy_score
+from sklearn.model_selection import StratifiedKFold
 
 # load dataset from tensorflow and split into 70% of training set and 30% of testing set
 # configure batch_size to -1 to get full numpy arrays instead of default tuples
@@ -18,17 +19,27 @@ x_train, y_train = train['image'], train['label']
 x_test, y_test = test['image'], test['label']
 x_train, x_test = x_train / 255.0, x_test / 255.0
 
+# set random seed
+
+seed = 7
+np.random.seed(seed)
+
+kfold = StratifiedKFold(n_splits=10, shuffle=True, random_state=seed)
+
 # build CNN model for training
 
 model = models.Sequential([
-    layers.Conv2D(32, (3, 3), activation='relu', input_shape=(150, 150, 3)),
+    layers.Conv2D(64, (3, 3), activation='relu', input_shape=(150, 150, 3)),
+    layers.BatchNormalization(),
     layers.MaxPool2D((2, 2)),
-    layers.Conv2D(64, (3, 3), activation='relu'),
-    layers.AveragePooling2D((2, 2)),
     layers.Conv2D(128, (3, 3), activation='relu'),
+    layers.BatchNormalization(),
+    layers.MaxPool2D((2, 2)),
+    layers.Conv2D(256, (3, 3), activation='relu'),
+    layers.BatchNormalization(),
     layers.MaxPool2D((2, 2)),
     layers.Flatten(),
-    layers.Dropout(0.2),
+    layers.Dropout(0.5),
     layers.Dense(256, activation='relu'),
     layers.Dense(128, activation='relu'),
     layers.Dense(8, activation='softmax')
@@ -49,4 +60,5 @@ plt.plot(history.history['loss'], label='loss')
 plt.plot(history.history['val_loss'], label='validation_loss')
 plt.xlabel('Epoch')
 plt.legend(loc='lower left')
+plt.savefig("result.png")
 plt.show()

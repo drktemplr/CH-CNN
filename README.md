@@ -1,4 +1,2 @@
-# Schizophrenia Detection Using 4D Convolutional Neural Network
-
-# Dataset
-The Center for Biomedical Research Excellence (COBRE) collects resting-state fMRI data for 72 schizophrenia patients and 75 healthy controls.
+# Texture Classification of Colorectal Cancer Using dilated Convolutional Neural Network
+This project built a deep learning model for image classification of textures in colorectal cancer histology ,based on colorectal_histology from tensorflow databases.
