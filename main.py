@@ -36,6 +36,7 @@ kfold = StratifiedKFold(n_splits=10, shuffle=True, random_state=seed)
 cvscores = []
 
 # build CNN model for training
+
 def build_model():
     model = models.Sequential([
         layers.Conv2D(64, (3, 3), activation='relu', input_shape=(150, 150, 3)),
