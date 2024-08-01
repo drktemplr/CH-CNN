@@ -52,9 +52,10 @@ def build_model():
         layers.MaxPool2D((2, 2)),
         SqueezeAndExcite2D(256),
         layers.Flatten(),
-        layers.Dropout(0.8),
         layers.Dense(256, activation='relu'),
+        layers.Dropout(0.6),
         layers.Dense(128, activation='relu'),
+        layers.Dropout(0.6),
         layers.Dense(8, activation='softmax')
     ])
 
