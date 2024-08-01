@@ -1,2 +1,2 @@
-# Texture Classification of Colorectal Cancer Using dilated Convolutional Neural Network
-This project built a deep learning model for image classification of textures in colorectal cancer histology ,based on colorectal_histology from tensorflow databases.
+# Texture Classification of Colorectal Cancer Using Convolutional Squeeze-And-Excitation Network
+This project built a deep learning model built in **convolutional neural network** framework with **squeeze-and-excitation blocks** for image classification of textures in colorectal cancer histology, based on [colorectal_histology](https://www.tensorflow.org/datasets/catalog/colorectal_histology) from tensorflow databases.
